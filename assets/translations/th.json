@@ -1,0 +1,14 @@
+{
+  "page": {
+    "settingTab": {
+      "setUp": "ตั้งค่า",
+      "setTing": "การตั้งค่า",
+      "language": "ภาษา",
+      "setLanguage": "ตั้งค่าภาษา"
+    },
+    "homeTab": {
+      "listRemain": "รายการ",
+      "add": "เพิ่มรายการ"
+    }
+  }
+}

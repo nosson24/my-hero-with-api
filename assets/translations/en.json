@@ -1,0 +1,14 @@
+{
+  "page": {
+    "settingTab": {
+      "setUp": "Set Up",
+      "setTing": "Setting",
+      "language": "language",
+      "setLanguage": "Set Language"
+    },
+    "homeTab": {
+      "listRemain": "List remain",
+      "add": "Add"
+    }
+  }
+}
