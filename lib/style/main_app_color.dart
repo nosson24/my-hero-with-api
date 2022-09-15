@@ -6,6 +6,11 @@ class MainAppColor {
   static const Color topBarColor = Color.fromRGBO(157, 39, 28, 1);
   static const Color bottomBarColor = Color.fromRGBO(248, 242, 242, 1);
   static const Color normalColor = Color.fromRGBO(255, 255, 255, 1);
+  static const Color introP1Color = Color.fromARGB(255, 243, 199, 3);
+  static const Color introP2Color = Color.fromARGB(255, 253, 95, 3);
+  static const Color introP3Color = Color.fromARGB(255, 250, 66, 66);
+ 
+  static const Color darkColor = Color.fromARGB(255, 139, 137, 137);
 }
 
 class MainFontstyle {
@@ -27,6 +32,16 @@ class MainFontstyle {
   static const TextStyle mainFontNameClass = TextStyle(
     fontSize: 13,
     fontWeight: FontWeight.w400,
+    color: Color.fromRGBO(255, 255, 255, 1),
+  );
+  static const TextStyle introTextTitle = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.bold,
+    color: Color.fromRGBO(255, 255, 255, 1),
+  );
+    static const TextStyle introTextSubTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
     color: Color.fromRGBO(255, 255, 255, 1),
   );
 }

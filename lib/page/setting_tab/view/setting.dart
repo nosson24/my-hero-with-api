@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_project/page/introduction_screen/view/intro_screen.dart';
 import 'package:test_project/page/setting_tab/bloc/commandMenu.dart';
 import 'package:test_project/page/setting_tab/bloc/profile.dart';
 import 'package:test_project/page/setting_tab/widget/set_language.dart';
@@ -49,6 +51,24 @@ class _SettingPageState extends State<SettingPage> {
                             .then((value) {
                           setState(() {});
                         });
+                      },
+                    ),
+                    CommandMenu(
+                      prefixText: const Text(
+                        "Logout",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      suffixWidget: const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
+                      onPressed: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        prefs.setBool('showProfile', false);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const IntroScreen(),
+                          ),
+                        );
                       },
                     ),
                   ],

@@ -41,6 +41,7 @@ dependencies:
   json_annotation: ^4.6.0
   dio: ^4.0.6
   easy_localization: ^3.0.1
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,15 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   json_serializable: ^6.3.1
   build_runner: ^2.2.0
+  flutter_native_splash: ^2.2.9
+
+flutter_native_splash:
+  color: "#b32205"
+  image: assets/all_might.png
+  color_dark: "#0f0f0f"
+  image_dark: assets/all_might.png
+  android: true
+  ios: true
   
 
 # For information on the generic Dart part of this file, see the
@@ -78,6 +88,9 @@ flutter:
     - assets/get_list.png
     - assets/add_list.png
     - assets/edit_list.png
+    - assets/all_might.png
+    - assets/intro_all_might.png
+    - assets/intro_midoriya.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
