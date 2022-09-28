@@ -1,3 +1,4 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ListProFile extends StatelessWidget {
@@ -5,13 +6,16 @@ class ListProFile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final user = FirebaseAuth.instance.currentUser!;
     return Row(
-      children: [Container(
+      children: [
+        Container(
           color: Colors.white,
           child: Row(
             children: [
               const CircleAvatar(
                 radius: 30,
+                // backgroundImage: NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!),
                 backgroundImage: AssetImage("assets/imageProfile.png"),
               ),
               Padding(
@@ -21,10 +25,12 @@ class ListProFile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
+                      // FirebaseAuth.instance.currentUser!.displayName!,
                       'Wichan Chaijamras',
                     ),
-                    const Text(
+                    Text(
+                      // user.email!,
                       'บริษัท ออนด์ดี้วิง จำกัด',
                     ),
                     Container(
@@ -63,7 +69,8 @@ class ListProFile extends StatelessWidget {
               ),
             ],
           ),
-        ),],
+        ),
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:test_project/model/data_model.dart';
+import 'package:test_project/model/model_whats_new.dart';
 import 'package:test_project/network/response_list.dart';
 import 'package:test_project/service/repository/repository.dart';
 
@@ -20,5 +21,9 @@ class TodoController {
 
   Future<ResponseList<DataModel>> putCompleted(DataModel todo) async {
     return _repository.putCompleted(todo);
+  }
+
+  Future<ResponseList<WhatsNewModel>?> fetchWhatsNew() async {
+    return _repository.getWhatsNew();
   }
 }

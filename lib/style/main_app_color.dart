@@ -9,7 +9,7 @@ class MainAppColor {
   static const Color introP1Color = Color.fromARGB(255, 243, 199, 3);
   static const Color introP2Color = Color.fromARGB(255, 253, 95, 3);
   static const Color introP3Color = Color.fromARGB(255, 250, 66, 66);
- 
+  static const Color textColor = Color.fromARGB(255, 215, 61, 0);
   static const Color darkColor = Color.fromARGB(255, 139, 137, 137);
 }
 
@@ -39,9 +39,24 @@ class MainFontstyle {
     fontWeight: FontWeight.bold,
     color: Color.fromRGBO(255, 255, 255, 1),
   );
-    static const TextStyle introTextSubTitle = TextStyle(
+  static const TextStyle loginText = TextStyle(
+    fontSize: 18,
+    // fontWeight: FontWeight.bold,
+    color: Color.fromARGB(255, 178, 178, 178),
+  );
+  static const TextStyle signUpText = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: MainAppColor.textColor,
+  );
+  static const TextStyle introTextSubTitle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
     color: Color.fromRGBO(255, 255, 255, 1),
+  );
+  static const TextStyle whatNewTitle = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: Color.fromARGB(255, 255, 255, 255),
   );
 }

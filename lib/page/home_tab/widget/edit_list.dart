@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/model/data_model.dart';
-
 import 'package:test_project/page/home_tab/view/profile_page.dart';
 import 'package:test_project/service/controllre/todo_controller.dart';
 import 'package:test_project/service/repository/todo_repository.dart';
@@ -22,19 +21,9 @@ class EditList extends StatefulWidget {
 class _EditListState extends State<EditList> {
   var todoController = TodoController(TodoRepository());
 
-  //   _Edit_State(DataModel todo) {
-  //   widget.todo.id;
-  //   titleController.text = widget.todo.title!;
-  //   descriptionController.text = widget.todo.description!;
-  //   dataController.text = widget.todo.data!;
-  // }
-
   late TextEditingController titleController;
   late TextEditingController descriptionController;
   late TextEditingController dataController;
-  // final titleController = TextEditingController();
-  // final descriptionController = TextEditingController();
-  // final dataController = TextEditingController();
 
   @override
   void initState() {
@@ -309,12 +298,12 @@ class _EditListState extends State<EditList> {
     );
   }
 
-  void _onNavigate(Widget page) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return page;
-      }),
-    );
-  }
+  // void _onNavigate(Widget page) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) {
+  //       return page;
+  //     }),
+  //   );
+  // }
 }

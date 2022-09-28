@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_project/page/home_tab/view/profile_page.dart';
 import 'package:test_project/page/introduction_screen/bloc/intro_example.dart';
+import 'package:test_project/page/what_new/view/what_new.dart';
 import 'package:test_project/style/main_app_color.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -67,10 +68,8 @@ class _IntroScreenState extends State<IntroScreen> {
                 final prefs = await SharedPreferences.getInstance();
                 prefs.setBool('showProfile', true);
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfilePage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const WhatsNew()));
               },
               child: const Text(
                 "Get Started",

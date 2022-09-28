@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "752825499019",
+    "project_id": "signin-eccc2",
+    "storage_bucket": "signin-eccc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752825499019:android:5455e78aeb82fea631438e",
+        "android_client_info": {
+          "package_name": "com.example.test_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752825499019-pai9icrcvf9iqnl2qe1hvaevv20vrra1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.test_project",
+            "certificate_hash": "09dce7a215768242e22f4a653a5d95ab4f1325b0"
+          }
+        },
+        {
+          "client_id": "752825499019-kqt8n4839tim7n12703pp5mocunhah0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb-TZl13vQShOrxMW8RdKSeHdClZSZnXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752825499019-kqt8n4839tim7n12703pp5mocunhah0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

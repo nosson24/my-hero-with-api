@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_project/page/introduction_screen/view/intro_screen.dart';
+import 'package:test_project/main.dart';
 import 'package:test_project/page/setting_tab/bloc/commandMenu.dart';
 import 'package:test_project/page/setting_tab/bloc/profile.dart';
 import 'package:test_project/page/setting_tab/widget/set_language.dart';
+import 'package:test_project/service/auth_sercive/auth_service.dart';
 import 'package:test_project/style/main_app_color.dart';
 import 'package:test_project/translations/locale_keys.g.dart';
 
@@ -64,11 +65,12 @@ class _SettingPageState extends State<SettingPage> {
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setBool('showProfile', false);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const IntroScreen(),
-                          ),
-                        );
+                        AuthService().signOut().whenComplete(() =>
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) =>  const MyApp(showProfile: false,)),
+                                (Route<dynamic> route) => false));
+                     
                       },
                     ),
                   ],

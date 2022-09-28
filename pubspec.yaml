@@ -42,6 +42,14 @@ dependencies:
   dio: ^4.0.6
   easy_localization: ^3.0.1
   smooth_page_indicator: ^1.0.0+2
+  firebase_auth: ^3.9.0
+  cloud_firestore: ^3.4.8
+  google_sign_in: ^5.4.1
+  firebase_core: ^1.22.0
+  provider: ^6.0.3
+  http: ^0.13.5
+
+
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +64,9 @@ dev_dependencies:
   json_serializable: ^6.3.1
   build_runner: ^2.2.0
   flutter_native_splash: ^2.2.9
+
+ 
+  
 
 flutter_native_splash:
   color: "#b32205"
@@ -91,6 +102,12 @@ flutter:
     - assets/all_might.png
     - assets/intro_all_might.png
     - assets/intro_midoriya.png
+    - assets/login_myhero.jpg
+    - assets/google-logo.png
+    - assets/backgroun_what_new.jpg
+    - assets/intro1.jpg
+    - assets/intro2.jpg
+    - assets/intro3.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
