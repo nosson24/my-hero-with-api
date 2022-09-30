@@ -1,22 +1,23 @@
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_project/style/main_app_color.dart';
 
 class ListProFile extends StatelessWidget {
   const ListProFile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final user = FirebaseAuth.instance.currentUser!;
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Row(
       children: [
         Container(
           color: Colors.white,
           child: Row(
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 30,
-                // backgroundImage: NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!),
-                backgroundImage: AssetImage("assets/imageProfile.png"),
+                backgroundImage: NetworkImage(user.photoURL!),
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -26,12 +27,12 @@ class ListProFile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      // FirebaseAuth.instance.currentUser!.displayName!,
-                      'Wichan Chaijamras',
+                      user.displayName!, style: MainFontstyle.mainFont2,
+                      // 'Wichan Chaijamras',
                     ),
                     Text(
-                      // user.email!,
-                      'บริษัท ออนด์ดี้วิง จำกัด',
+                      user.email!, style: MainFontstyle.mainFontNameClass2,
+                      // 'บริษัท ออนด์ดี้วิง จำกัด',
                     ),
                     Container(
                         margin: const EdgeInsets.only(top: 5, bottom: 5),
@@ -42,6 +43,7 @@ class ListProFile extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(3),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(6),
@@ -49,16 +51,19 @@ class ListProFile extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(40),
-                                    color: Colors.amber[700],
+                                    color: MainAppColor.introP2Color,
                                   ),
                                   height: 7,
                                   width: 7,
                                 ),
                               ),
                               Container(
-                                margin: const EdgeInsets.only(right: 4),
+                                margin: const EdgeInsets.only(
+                                  right: 4,
+                                ),
                                 child: const Text(
                                   'รอการอนุมัติ',
+                                  style: MainFontstyle.mainFontNameClass3,
                                 ),
                               ),
                             ],

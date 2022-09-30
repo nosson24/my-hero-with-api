@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project/model/data_model.dart';
+import 'package:test_project/model/data_docs_model.dart';
 import 'package:test_project/page/home_tab/view/profile_page.dart';
-import 'package:test_project/service/controllre/todo_controller.dart';
-import 'package:test_project/service/repository/todo_repository.dart';
 import 'package:test_project/style/main_app_color.dart';
 
 class AddTask extends StatefulWidget {
@@ -13,13 +13,23 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
-  var todoController = TodoController(TodoRepository());
+  final user = FirebaseAuth.instance.currentUser!;
 
-  final titleController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final dataController = TextEditingController();
+  final titleText = TextEditingController();
+  final descriptionText = TextEditingController();
+  final dataText = TextEditingController();
 
-  Widget title() {
+  Future createTodos({required DocsModel docsModel}) async {
+    DocumentReference docsFile =
+        FirebaseFirestore.instance.collection("${user.email}").doc();
+    docsModel.id = docsFile.id;
+
+    final json = docsModel.toJson();
+
+    await docsFile.set(json);
+  }
+
+  Widget _title() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -50,7 +60,7 @@ class _AddTaskState extends State<AddTask> {
               right: 5,
             ),
             child: TextField(
-              controller: titleController,
+              controller: titleText,
               decoration: const InputDecoration(
                 counterText: "",
                 border: InputBorder.none,
@@ -62,7 +72,7 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
-  Widget description() {
+  Widget _description() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -90,7 +100,7 @@ class _AddTaskState extends State<AddTask> {
               right: 5,
             ),
             child: TextField(
-              controller: descriptionController,
+              controller: descriptionText,
               expands: true,
               maxLines: null,
               decoration: const InputDecoration(
@@ -120,13 +130,13 @@ class _AddTaskState extends State<AddTask> {
               children: [
                 InkWell(
                   onTap: () async {
-                    DataModel todo = DataModel(
-                      1,
-                      titleController.text,
-                      descriptionController.text,
-                      dataController.text,
+                    final todoDocs = DocsModel(
+                      title: titleText.text,
+                      description: descriptionText.text,
+                      data: dataText.text,
                     );
-                    todoController.postTodo(todo);
+
+                    createTodos(docsModel: todoDocs);
 
                     Navigator.pushAndRemoveUntil<void>(
                       context,
@@ -178,7 +188,7 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
-  Widget data() {
+  Widget _data() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -206,7 +216,7 @@ class _AddTaskState extends State<AddTask> {
               right: 5,
             ),
             child: TextField(
-              controller: dataController,
+              controller: dataText,
               expands: true,
               maxLines: null,
               decoration: const InputDecoration(
@@ -230,9 +240,9 @@ class _AddTaskState extends State<AddTask> {
           padding: const EdgeInsets.all(27),
           child: Column(
             children: [
-              title(),
-              description(),
-              data(),
+              _title(),
+              _description(),
+              _data(),
             ],
           ),
         )),
@@ -276,20 +286,10 @@ class _AddTaskState extends State<AddTask> {
       ),
       body: Column(
         children: [
-          
           mainList(),
           bottomBar(),
         ],
       ),
-    );
-  }
-
-  void _onNavigate(Widget page) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return page;
-      }),
     );
   }
 }

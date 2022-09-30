@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:test_project/page/add_list_tab/add_list_page.dart';
 import 'package:test_project/page/setting_tab/view/setting.dart';
-import 'package:test_project/service/auth_sercive/auth_service.dart';
 import 'package:test_project/style/main_app_color.dart';
 import 'package:test_project/translations/locale_keys.g.dart';
 

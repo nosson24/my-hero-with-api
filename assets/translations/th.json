@@ -4,7 +4,8 @@
       "setUp": "ตั้งค่า",
       "setTing": "การตั้งค่า",
       "language": "ภาษา",
-      "setLanguage": "ตั้งค่าภาษา"
+      "setLanguage": "ตั้งค่าภาษา",
+      "logOut": "ออกจากระบบ"
     },
     "homeTab": {
       "listRemain": "รายการ",

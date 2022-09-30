@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:test_project/page/introduction_screen/view/intro_screen.dart';
 import 'package:test_project/service/auth_sercive/auth_service.dart';
-import 'package:test_project/service/provider/google_sign_in.dart';
 import 'package:test_project/style/main_app_color.dart';
 
 class LoginTab extends StatefulWidget {
@@ -37,7 +34,8 @@ class _LoginTabState extends State<LoginTab> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   color: MainAppColor.introP1Color,
-                  border: Border.all(width: 3, color: MainAppColor.normalColor)),
+                  border:
+                      Border.all(width: 3, color: MainAppColor.normalColor)),
               margin: const EdgeInsets.only(
                 left: 70,
                 right: 70,

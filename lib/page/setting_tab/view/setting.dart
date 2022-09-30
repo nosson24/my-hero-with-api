@@ -55,9 +55,9 @@ class _SettingPageState extends State<SettingPage> {
                       },
                     ),
                     CommandMenu(
-                      prefixText: const Text(
-                        "Logout",
-                        style: TextStyle(color: Colors.red),
+                      prefixText: Text(
+                        LocaleKeys.page_settingTab_logOut.tr(),
+                        style: const TextStyle(color: Colors.red),
                       ),
                       suffixWidget: const Icon(
                         Icons.arrow_forward_ios,
@@ -65,12 +65,13 @@ class _SettingPageState extends State<SettingPage> {
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setBool('showProfile', false);
-                        AuthService().signOut().whenComplete(() =>
-                            Navigator.of(context).pushAndRemoveUntil(
+                        AuthService().signOut().whenComplete(
+                            () => Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) =>  const MyApp(showProfile: false,)),
+                                    builder: (context) => const MyApp(
+                                          showProfile: false,
+                                        )),
                                 (Route<dynamic> route) => false));
-                     
                       },
                     ),
                   ],

@@ -75,13 +75,11 @@ class _FollowersPageState extends State<FollowersPage> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: MainAppColor.mainColor,
         ),
         child: Column(
@@ -91,7 +89,7 @@ class _FollowersPageState extends State<FollowersPage> {
             ),
             _topBar(),
             _mainList(),
-              BottomBar(
+            BottomBar(
               numberData: Text(
                 "4 Follower",
                 style: GoogleFonts.roboto(textStyle: MainFontstyle.mainFont2),

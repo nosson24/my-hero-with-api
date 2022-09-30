@@ -34,6 +34,15 @@ class MainFontstyle {
     fontWeight: FontWeight.w400,
     color: Color.fromRGBO(255, 255, 255, 1),
   );
+  static const TextStyle mainFontNameClass2 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: Color.fromARGB(255, 0, 0, 0),
+  );
+  static const TextStyle mainFontNameClass3 = TextStyle(
+      fontSize: 13,
+      fontWeight: FontWeight.w400,
+      color: MainAppColor.introP2Color);
   static const TextStyle introTextTitle = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,

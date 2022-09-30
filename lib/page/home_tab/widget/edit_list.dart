@@ -1,17 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project/model/data_model.dart';
 import 'package:test_project/page/home_tab/view/profile_page.dart';
-import 'package:test_project/service/controllre/todo_controller.dart';
-import 'package:test_project/service/repository/todo_repository.dart';
 import 'package:test_project/style/main_app_color.dart';
 
 class EditList extends StatefulWidget {
-  final VoidCallback? onPressed;
-  final DataModel todo;
+  // final VoidCallback? onPressed;
+  final String id;
+  final String title;
+  final String descriptionText;
+  final String dateText;
   const EditList({
     Key? key,
-    this.onPressed,
-    required this.todo,
+    // this.onPressed,
+    required this.id,
+    required this.title,
+    required this.descriptionText,
+    required this.dateText,
   }) : super(key: key);
 
   @override
@@ -19,8 +24,6 @@ class EditList extends StatefulWidget {
 }
 
 class _EditListState extends State<EditList> {
-  var todoController = TodoController(TodoRepository());
-
   late TextEditingController titleController;
   late TextEditingController descriptionController;
   late TextEditingController dataController;
@@ -28,10 +31,21 @@ class _EditListState extends State<EditList> {
   @override
   void initState() {
     super.initState();
-    titleController = TextEditingController(text: widget.todo.title);
-    descriptionController =
-        TextEditingController(text: widget.todo.description);
-    dataController = TextEditingController(text: widget.todo.data);
+    titleController = TextEditingController(text: widget.title);
+    descriptionController = TextEditingController(text: widget.descriptionText);
+    dataController = TextEditingController(text: widget.dateText);
+  }
+
+  Future updateTodos() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final docsFile =
+        FirebaseFirestore.instance.collection("${user.email}").doc(widget.id);
+
+    docsFile.update({
+      'title': titleController.text,
+      'description': descriptionController.text,
+      'data': dataController.text,
+    });
   }
 
   Widget title() {
@@ -65,6 +79,7 @@ class _EditListState extends State<EditList> {
               right: 5,
             ),
             child: TextField(
+              style: MainFontstyle.mainFont2,
               controller: titleController,
               decoration: const InputDecoration(
                 counterText: "",
@@ -105,6 +120,7 @@ class _EditListState extends State<EditList> {
               right: 5,
             ),
             child: TextField(
+              style: MainFontstyle.mainFont2,
               controller: descriptionController,
               expands: true,
               maxLines: null,
@@ -135,14 +151,7 @@ class _EditListState extends State<EditList> {
               children: [
                 InkWell(
                   onTap: () {
-                    DataModel todoList = DataModel(
-                      widget.todo.id,
-                      titleController.text,
-                      descriptionController.text,
-                      dataController.text,
-                    );
-                    todoController.putCompleted(todoList);
-
+                    updateTodos();
                     Navigator.pushAndRemoveUntil<void>(
                       context,
                       MaterialPageRoute(
@@ -221,6 +230,7 @@ class _EditListState extends State<EditList> {
               right: 5,
             ),
             child: TextField(
+              style: MainFontstyle.mainFont2,
               controller: dataController,
               expands: true,
               maxLines: null,
@@ -297,13 +307,4 @@ class _EditListState extends State<EditList> {
       ),
     );
   }
-
-  // void _onNavigate(Widget page) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) {
-  //       return page;
-  //     }),
-  //   );
-  // }
 }

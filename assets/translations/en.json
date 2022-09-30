@@ -4,7 +4,8 @@
       "setUp": "Set Up",
       "setTing": "Setting",
       "language": "language",
-      "setLanguage": "Set Language"
+      "setLanguage": "Set Language",
+      "logOut": "Logout"
     },
     "homeTab": {
       "listRemain": "List remain",
