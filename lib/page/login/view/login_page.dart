@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/page/login/bloc/background_logni.dart';
+import 'package:test_project/page/login/widget/background_logni.dart';
 import 'package:test_project/page/login/widget/login_tab.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,10 +16,12 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: const [
           BackgroundLogin(),
-          LoginTab(),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: LoginTab(),
+          ),
         ],
       ),
     );
   }
 }
-

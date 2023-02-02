@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:test_project/page/add_list_tab/add_list_page.dart';
 import 'package:test_project/page/setting_tab/view/setting.dart';
+import 'package:test_project/service/controllre/function.dart';
 import 'package:test_project/style/main_app_color.dart';
 import 'package:test_project/translations/locale_keys.g.dart';
 
@@ -40,14 +41,18 @@ class _FloatingButtonState extends State<FloatingButton> {
               Icons.add,
               color: Colors.white,
             ),
-            onTap: () {
-              Navigator.of(context)
-                  .push(
-                      MaterialPageRoute(builder: (context) => const AddTask()))
-                  .then((_) => setState(() {}));
-            },
+            onTap: () => _navigateToAddTaskPage(),
             label: LocaleKeys.page_homeTab_add.tr()),
       ],
     );
+  }
+
+  void _navigateToAddTaskPage() {
+    setState(() {
+      HistoryFunction().logAccess('Add Task Page');
+    });
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const AddTask()))
+        .then((_) => setState(() {}));
   }
 }

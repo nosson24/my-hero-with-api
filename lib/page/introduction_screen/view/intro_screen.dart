@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:test_project/page/introduction_screen/bloc/intro_example.dart';
+import 'package:test_project/page/introduction_screen/widget/intro_example.dart';
 import 'package:test_project/page/what_new/view/what_new.dart';
 import 'package:test_project/style/main_app_color.dart';
 

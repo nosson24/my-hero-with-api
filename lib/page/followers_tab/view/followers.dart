@@ -12,34 +12,34 @@ class FollowersPage extends StatefulWidget {
 }
 
 class _FollowersPageState extends State<FollowersPage> {
-  Widget _topBar() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: MainAppColor.topBarColor,
-      ),
-      width: MediaQuery.of(context).size.width,
-      height: 63,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              onPressed: () async {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: MainAppColor.normalColor,
-                size: 18,
-              ),
-            ),
-          ),
-          const Center(
-              child: Text("Followers", style: MainFontstyle.mainFont1)),
-        ],
-      ),
-    );
-  }
+  // Widget _topBar() {
+  //   return Container(
+  //     decoration: const BoxDecoration(
+  //       color: MainAppColor.topBarColor,
+  //     ),
+  //     width: MediaQuery.of(context).size.width,
+  //     height: 63,
+  //     child: Stack(
+  //       children: [
+  //         Align(
+  //           alignment: Alignment.centerLeft,
+  //           child: IconButton(
+  //             onPressed: () async {
+  //               Navigator.pop(context);
+  //             },
+  //             icon: const Icon(
+  //               Icons.arrow_back_ios,
+  //               color: MainAppColor.normalColor,
+  //               size: 18,
+  //             ),
+  //           ),
+  //         ),
+  //         const Center(
+  //             child: Text("Followers", style: MainFontstyle.mainFont1)),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _mainList() {
     return Expanded(
@@ -78,25 +78,27 @@ class _FollowersPageState extends State<FollowersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: MainAppColor.mainColor,
+      appBar: AppBar(
+        backgroundColor: MainAppColor.topBarColor,
+        title: const Text(
+          "Followers",
+          style: MainFontstyle.mainFont1,
         ),
-        child: Column(
-          children: [
-            Container(
-              height: 22,
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: 22,
+          ),
+          // _topBar(),
+          _mainList(),
+          BottomBar(
+            numberData: Text(
+              "4 Follower",
+              style: GoogleFonts.roboto(textStyle: MainFontstyle.mainFont2),
             ),
-            _topBar(),
-            _mainList(),
-            BottomBar(
-              numberData: Text(
-                "4 Follower",
-                style: GoogleFonts.roboto(textStyle: MainFontstyle.mainFont2),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

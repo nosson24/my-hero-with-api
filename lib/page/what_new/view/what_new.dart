@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/page/home_tab/view/profile_page.dart';
-import 'package:test_project/page/what_new/bloc/backgroun_what_new.dart';
+import 'package:test_project/page/what_new/widget/backgroun_what_new.dart';
 import 'package:test_project/page/what_new/widget/show_list_new.dart';
 import 'package:test_project/style/main_app_color.dart';
 

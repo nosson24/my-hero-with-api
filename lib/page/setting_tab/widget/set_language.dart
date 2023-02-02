@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_project/page/setting_tab/bloc/commandMenu.dart';
+import 'package:test_project/page/setting_tab/widget/commandMenu.dart';
 import 'package:test_project/page/setting_tab/widget/select_language.dart';
 import 'package:test_project/style/main_app_color.dart';
 import 'package:test_project/translations/locale_keys.g.dart';
@@ -37,7 +37,7 @@ class _SetLanguagePageState extends State<SetLanguagePage> {
           title: Text(
             LocaleKeys.page_settingTab_setUp.tr(),
           ),
-          backgroundColor: MainAppColor.mainColor,
+          backgroundColor: MainAppColor.topBarColor,
         ),
         body: Padding(
           padding: const EdgeInsets.all(8),

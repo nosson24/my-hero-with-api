@@ -14,40 +14,40 @@ class FollowingPage extends StatefulWidget {
 }
 
 class _FollowingPageState extends State<FollowingPage> {
-  Widget topBar() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(157, 39, 28, 1),
-      ),
-      width: MediaQuery.of(context).size.width,
-      height: 63,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              onPressed: () async {
-                _onNavigate(const ProfilePage());
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-                size: 18,
-              ),
-            ),
-          ),
-          const Center(
-              child: Text(
-            "Following",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-            ),
-          )),
-        ],
-      ),
-    );
-  }
+  // Widget topBar() {
+  //   return Container(
+  //     decoration: const BoxDecoration(
+  //       color: Color.fromRGBO(157, 39, 28, 1),
+  //     ),
+  //     width: MediaQuery.of(context).size.width,
+  //     height: 63,
+  //     child: Stack(
+  //       children: [
+  //         Align(
+  //           alignment: Alignment.centerLeft,
+  //           child: IconButton(
+  //             onPressed: () async {
+  //               _onNavigate(const ProfilePage());
+  //             },
+  //             icon: const Icon(
+  //               Icons.arrow_back_ios,
+  //               color: Colors.white,
+  //               size: 18,
+  //             ),
+  //           ),
+  //         ),
+  //         const Center(
+  //             child: Text(
+  //           "Following",
+  //           style: TextStyle(
+  //             color: Colors.white,
+  //             fontSize: 18,
+  //           ),
+  //         )),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget mainList() {
     return Expanded(
@@ -83,30 +83,33 @@ class _FollowingPageState extends State<FollowingPage> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: MainAppColor.mainColor,
+      appBar: AppBar(
+        backgroundColor: MainAppColor.topBarColor,
+        title: const Text(
+          "Following",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
-        child: Column(
-          children: [
-            Container(
-              height: 22,
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: 22,
+          ),
+          // topBar(),
+          mainList(),
+          BottomBar(
+            numberData: Text(
+              "4 Follower",
+              style: GoogleFonts.roboto(textStyle: MainFontstyle.mainFont2),
             ),
-            topBar(),
-            mainList(),
-            BottomBar(
-              numberData: Text(
-                "4 Follower",
-                style: GoogleFonts.roboto(textStyle: MainFontstyle.mainFont2),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

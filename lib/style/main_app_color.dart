@@ -14,6 +14,21 @@ class MainAppColor {
 }
 
 class MainFontstyle {
+    static const TextStyle loginlabelText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: MainAppColor.introP1Color,
+  );
+  static const TextStyle labelText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: MainAppColor.darkColor,
+  );
+  static const TextStyle hintText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: MainAppColor.mainColor,
+  );
   static const TextStyle mainFont1 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,

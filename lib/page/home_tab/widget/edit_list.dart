@@ -1,22 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_project/model/data_docs_model.dart';
 import 'package:test_project/page/home_tab/view/profile_page.dart';
+import 'package:test_project/service/controllre/function.dart';
 import 'package:test_project/style/main_app_color.dart';
 
 class EditList extends StatefulWidget {
   // final VoidCallback? onPressed;
+
   final String id;
   final String title;
   final String descriptionText;
-  final String dateText;
+  final String dataText;
   const EditList({
     Key? key,
     // this.onPressed,
     required this.id,
     required this.title,
     required this.descriptionText,
-    required this.dateText,
+    required this.dataText,
   }) : super(key: key);
 
   @override
@@ -33,20 +36,21 @@ class _EditListState extends State<EditList> {
     super.initState();
     titleController = TextEditingController(text: widget.title);
     descriptionController = TextEditingController(text: widget.descriptionText);
-    dataController = TextEditingController(text: widget.dateText);
+    dataController = TextEditingController(text: widget.dataText);
   }
 
-  Future updateTodos() async {
-    final user = FirebaseAuth.instance.currentUser!;
-    final docsFile =
-        FirebaseFirestore.instance.collection("${user.email}").doc(widget.id);
+  // Future updateTodos() async {
+  //   final user = FirebaseAuth.instance.currentUser!;
+  //   final docsFile = FirebaseFirestore.instance
+  //       .collection("${user.email}")
+  //       .doc(widget.id);
 
-    docsFile.update({
-      'title': titleController.text,
-      'description': descriptionController.text,
-      'data': dataController.text,
-    });
-  }
+  //   docsFile.update({
+  //     'title': titleController.text,
+  //     'description': descriptionController.text,
+  //     'data': dataController.text,
+  //   });
+  // }
 
   Widget title() {
     return Column(
@@ -134,6 +138,25 @@ class _EditListState extends State<EditList> {
     );
   }
 
+  void _navigateToupdateTodos() {
+    final updateData = DocsModel(
+      id: widget.id,
+      title: titleController.text,
+      description: descriptionController.text,
+      data: dataController.text,
+    );
+    setState(() {
+      HistoryFunction().logAccess('Edit: ' + updateData.title.toString());
+    });
+
+    FirebaseService().updateTodos(docsModel: updateData);
+    Navigator.pushAndRemoveUntil<void>(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => const ProfilePage()),
+      (route) => false,
+    );
+  }
+
   Future<void> showBox(String message) async {
     showDialog(
       context: context,
@@ -150,16 +173,24 @@ class _EditListState extends State<EditList> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () {
-                    updateTodos();
-                    Navigator.pushAndRemoveUntil<void>(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const ProfilePage()),
-                      (route) => false,
-                    );
-                  },
+                  onTap: () => _navigateToupdateTodos(),
+                  // {
+                  // final updateData = DocsModel(
+                  //   id: widget.id,
+                  //   title: titleController.text,
+                  //   description: descriptionController.text,
+                  //   data: dataController.text,
+                  // );
+
+                  // FirebaseService().updateTodos(docsModel: updateData);
+                  // Navigator.pushAndRemoveUntil<void>(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (BuildContext context) =>
+                  //           const ProfilePage()),
+                  //   (route) => false,
+                  // );
+                  // },
                   child: Container(
                     alignment: Alignment.center,
                     width: 66,

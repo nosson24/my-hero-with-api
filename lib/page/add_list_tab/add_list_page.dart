@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project/model/data_docs_model.dart';
 import 'package:test_project/page/home_tab/view/profile_page.dart';
+import 'package:test_project/service/controllre/function.dart';
 import 'package:test_project/style/main_app_color.dart';
 
 class AddTask extends StatefulWidget {
@@ -18,16 +18,6 @@ class _AddTaskState extends State<AddTask> {
   final titleText = TextEditingController();
   final descriptionText = TextEditingController();
   final dataText = TextEditingController();
-
-  Future createTodos({required DocsModel docsModel}) async {
-    DocumentReference docsFile =
-        FirebaseFirestore.instance.collection("${user.email}").doc();
-    docsModel.id = docsFile.id;
-
-    final json = docsModel.toJson();
-
-    await docsFile.set(json);
-  }
 
   Widget _title() {
     return Column(
@@ -113,6 +103,26 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
+  void _navigateToCreateTodos() {
+    final todoDocs = DocsModel(
+      title: titleText.text,
+      description: descriptionText.text,
+      data: dataText.text,
+    );
+    setState(() {
+      HistoryFunction().logAccess('Add: ' + todoDocs.title.toString());
+    });
+
+    FirebaseService()
+        .createTodos(docsModel: todoDocs)
+        .then((value) => Navigator.pushAndRemoveUntil<void>(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => const ProfilePage()),
+              (route) => false,
+            ));
+  }
+
   Future<void> showBox(String message) async {
     showDialog(
       context: context,
@@ -129,23 +139,22 @@ class _AddTaskState extends State<AddTask> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () async {
-                    final todoDocs = DocsModel(
-                      title: titleText.text,
-                      description: descriptionText.text,
-                      data: dataText.text,
-                    );
+                  onTap: () => _navigateToCreateTodos(),
+                  //  {
+                  // final todoDocs = DocsModel(
+                  //   title: titleText.text,
+                  //   description: descriptionText.text,
+                  //   data: dataText.text,
+                  // );
 
-                    createTodos(docsModel: todoDocs);
-
-                    Navigator.pushAndRemoveUntil<void>(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const ProfilePage()),
-                      (route) => false,
-                    );
-                  },
+                  // Navigator.pushAndRemoveUntil<void>(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (BuildContext context) =>
+                  //           const ProfilePage()),
+                  //   (route) => false,
+                  // );
+                  // },
                   child: Container(
                     alignment: Alignment.center,
                     width: 66,

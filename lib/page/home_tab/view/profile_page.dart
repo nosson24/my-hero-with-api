@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_project/page/followers_tab/view/followers.dart';
 import 'package:test_project/page/following_tab/view/following.dart';
-import 'package:test_project/page/home_tab/bloc/floating_action_button.dart';
+import 'package:test_project/page/home_tab/widget/floating_action_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:test_project/page/home_tab/widget/edit_list.dart';
 import 'package:test_project/service/controllre/function.dart';
@@ -56,18 +56,28 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: MainFontstyle.mainFont1,
                   ),
                   onPressedToList: () {
-                    _onNavigate(EditList(
-                      id: documentSnapshot["id"],
-                      title: documentSnapshot["title"],
-                      descriptionText: documentSnapshot["description"],
-                      dateText: documentSnapshot["data"],
-                    ));
+                    _navigateToEditListPage(
+                      documentSnapshot["id"],
+                      documentSnapshot["title"],
+                      documentSnapshot["description"],
+                      documentSnapshot["data"],
+                    );
+                    // _onNavigate(EditList(
+                    //   id: documentSnapshot["id"],
+                    //   title: documentSnapshot["title"],
+                    //   descriptionText: documentSnapshot["description"],
+                    //   dataText: documentSnapshot["data"],
+                    // ));
                   },
-                  onPressedDelete: () {
-                    setState(() {
-                      deleteTodos(documentSnapshot["id"]);
-                    });
-                  },
+                  onPressedDelete: () => _navigateTodeleteTodos(
+                    documentSnapshot["id"],
+                    documentSnapshot["title"],
+                  ),
+                  // {
+                  //   setState(() {
+                  //     FirebaseService().deleteTodos(documentSnapshot["id"]);
+                  //   });
+                  // },
                 );
               },
             );
@@ -75,6 +85,15 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  void _navigateTodeleteTodos(String id, String title) {
+    setState(() {
+      HistoryFunction().logAccess('Delete: $title');
+    });
+    setState(() {
+      FirebaseService().deleteTodos(id);
+    });
   }
 
   @override
@@ -87,21 +106,15 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           child: Column(
             children: <Widget>[
-              Container(
-                height: 22,
-              ),
-              const AvatarProfile(
+              const SizedBox(height: 60),
+              AvatarProfile(
                 imgPath: 'assets/imageProfile.png',
-                name: 'Shoto Todoroki',
+                name: user.email!,
                 status: 'student',
               ),
               FollowBar(
-                onPressedFollowers: () {
-                  _onNavigate(const FollowersPage());
-                },
-                onPressedFollowing: () {
-                  _onNavigate(const FollowingPage());
-                },
+                onPressedFollowers: () => _navigateToFollowersPage(),
+                onPressedFollowing: () => _navigateToFollowingPage(),
               ),
               _listView(),
               StreamBuilder(
@@ -136,5 +149,32 @@ class _ProfilePageState extends State<ProfilePage> {
         return page;
       }),
     );
+  }
+
+  void _navigateToFollowersPage() {
+    setState(() {
+      HistoryFunction().logAccess('Followers Page');
+    });
+    _onNavigate(const FollowersPage());
+  }
+
+  void _navigateToFollowingPage() {
+    setState(() {
+      HistoryFunction().logAccess('Following Page');
+    });
+    _onNavigate(const FollowingPage());
+  }
+
+  void _navigateToEditListPage(
+      String id, String title, String descriptionText, String data) {
+    setState(() {
+      HistoryFunction().logAccess('Edit List Page');
+    });
+    _onNavigate(EditList(
+      id: id,
+      title: title,
+      descriptionText: descriptionText,
+      dataText: data,
+    ));
   }
 }

@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_project/main.dart';
-import 'package:test_project/page/setting_tab/bloc/commandMenu.dart';
-import 'package:test_project/page/setting_tab/bloc/profile.dart';
+import 'package:test_project/page/setting_tab/widget/commandMenu.dart';
+import 'package:test_project/page/setting_tab/widget/history.dart';
+import 'package:test_project/page/setting_tab/widget/profile.dart';
 import 'package:test_project/page/setting_tab/widget/set_language.dart';
 import 'package:test_project/service/auth_sercive/auth_service.dart';
 import 'package:test_project/style/main_app_color.dart';
@@ -17,12 +17,14 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(LocaleKeys.page_settingTab_setTing.tr()),
-          backgroundColor: MainAppColor.mainColor,
+          backgroundColor: MainAppColor.topBarColor,
         ),
         body: Padding(
           padding: const EdgeInsets.all(8),
@@ -37,21 +39,28 @@ class _SettingPageState extends State<SettingPage> {
                   children: [
                     CommandMenu(
                       prefixText: Text(
-                        LocaleKeys.page_settingTab_setUp.tr(),
+                        LocaleKeys.page_settingTab_setTing.tr(),
                       ),
                       suffixWidget: const Icon(
                         Icons.arrow_forward_ios,
                       ),
                       onPressed: () {
                         Navigator.of(context)
-                            .push(
-                          MaterialPageRoute(
-                            builder: (context) => const SetLanguagePage(),
-                          ),
-                        )
+                            .push(MaterialPageRoute(
+                                builder: (context) => const SetLanguagePage()))
                             .then((value) {
                           setState(() {});
                         });
+                      },
+                    ),
+                    CommandMenu(
+                      prefixText: const Text('History'),
+                      suffixWidget: const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const HistoryTab()));
                       },
                     ),
                     CommandMenu(
@@ -63,15 +72,16 @@ class _SettingPageState extends State<SettingPage> {
                         Icons.arrow_forward_ios,
                       ),
                       onPressed: () async {
-                        final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool('showProfile', false);
-                        AuthService().signOut().whenComplete(
-                            () => Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => const MyApp(
-                                          showProfile: false,
-                                        )),
-                                (Route<dynamic> route) => false));
+                        // final prefs = await SharedPreferences.getInstance();
+                        // prefs.setBool('showProfile', false);
+                        AuthService().signOut(context);
+                        // AuthService().signOut().whenComplete(
+                        //     () => Navigator.of(context).pushAndRemoveUntil(
+                        //         MaterialPageRoute(
+                        //             builder: (context) => const MyApp(
+                        //                   showProfile: false,
+                        //                 )),
+                        //         (route) => false));
                       },
                     ),
                   ],
